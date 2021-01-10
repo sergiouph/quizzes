@@ -33,14 +33,6 @@ function selectOption(options: Option[]): Option {
     return options[index]
 }
 
-function buildOptionCases(options: Option[], articles: Article[]): OptionCase[] {
-    const cases: OptionCase[] = []
-
-
-
-    return cases;
-}
-
 function buildOptionCase(option: Option, article: Article, isAnswer: boolean): OptionCase {
     const optionCase: OptionCase = {
         isAnswer,

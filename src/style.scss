@@ -44,5 +44,19 @@ body {
                 background-color: white;
             }
         }
+
+        &.success {
+            background-color: green;
+            &:hover {
+                background-color: green;
+            }
+        }
+
+        &.failure {
+            background-color: red;
+            &:hover {
+                background-color: red;
+            }
+        }
     }
 }
