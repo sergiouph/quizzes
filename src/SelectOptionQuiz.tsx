@@ -20,20 +20,20 @@ function generateCardDataItems(optionCases: OptionCase[]): CardData[] {
 
 export interface SelectOptionQuizProperties {
   quiz: Quiz
-  autoNext: boolean
 }
 
 export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
   const [question, setQuestion] = useState<OptionCase|undefined>(undefined);
   const [cardDataItems, setCardDataItems] = useState<CardData[]>([]);
-  const [autoNext, setAutoNext] = useState<boolean>(props.autoNext);
   const [completed, setCompleted] = useState<boolean>(false);
+  const [dirty, setDirty] = useState<boolean>(false);
 
   if (question === undefined) {
     const quizCase = generateQuizCase(props.quiz)
     setQuestion(quizCase.question)
     setCardDataItems(generateCardDataItems(quizCase.options))
     setCompleted(false)
+    setDirty(false)
     return <div>Loading...</div>
   }
   
@@ -45,17 +45,19 @@ export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
     const onSelected = () => {
       cardData.covered = false
       setCardDataItems([...cardDataItems])
-
       
       if (cardData.optionCase.isAnswer) {
-        if (autoNext) {
+        if (dirty) {
+          setCompleted(true)
+        }
+        else {
           setTimeout(() => {
             onNext()
           }, DELAY);
         }
-        else {
-          setCompleted(true)
-        }
+      }
+      else {
+        setDirty(true)
       }
     }
 
@@ -72,10 +74,6 @@ export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
     setCompleted(true)
   }
 
-  const onAutoNext = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAutoNext(event.target.checked)
-  }
-
   return (
     <div className="select-option-quiz">
       <div className="question card-container">
@@ -86,11 +84,6 @@ export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
       </div>
       <div className="actions">
         {completed ? <button onClick={onNext}>Next</button> : <button onClick={onIDK}>I don't know</button> }
-        <br />
-        <label>
-          Auto-next
-          <input type="checkbox" checked={autoNext} onChange={onAutoNext} />
-        </label>
       </div>
     </div>
   )
