@@ -26,6 +26,7 @@ export interface SelectOptionQuizProperties {
 export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
   const [question, setQuestion] = useState<OptionCase|undefined>(undefined);
   const [cardDataItems, setCardDataItems] = useState<CardData[]>([]);
+  const [autoNext, setAutoNext] = useState<boolean>(props.autoNext);
   const [completed, setCompleted] = useState<boolean>(false);
 
   if (question === undefined) {
@@ -47,7 +48,7 @@ export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
 
       
       if (cardData.optionCase.isAnswer) {
-        if (props.autoNext) {
+        if (autoNext) {
           setTimeout(() => {
             onNext()
           }, DELAY);
@@ -71,6 +72,10 @@ export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
     setCompleted(true)
   }
 
+  const onAutoNext = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAutoNext(event.target.checked)
+  }
+
   return (
     <div className="select-option-quiz">
       <div className="question card-container">
@@ -81,6 +86,11 @@ export const SelectOptionQuiz = (props: SelectOptionQuizProperties) => {
       </div>
       <div className="actions">
         {completed ? <button onClick={onNext}>Next</button> : <button onClick={onIDK}>I don't know</button> }
+        <br />
+        <label>
+          Auto-next
+          <input type="checkbox" checked={autoNext} onChange={onAutoNext} />
+        </label>
       </div>
     </div>
   )
