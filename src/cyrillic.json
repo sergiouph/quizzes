@@ -1,0 +1,142 @@
+{
+    "quizzes": [
+        {
+            "name": "Cyrillic to Romanic",
+            "type": "select-option",
+            "groups": ["cyrillic-letters"],
+            "questions": ["cyr-cap cyr-low"],
+            "answers": ["name sound"],
+            "options": 5
+        },
+        {
+            "name": "Romanic to Cyrillic",
+            "type": "select-option",
+            "groups": ["cyrillic-letters"],
+            "questions": ["name sound"],
+            "answers": ["cyr-cap cyr-low"],
+            "options": 5
+        }
+    ],
+    "categories": [
+        { "id": "name", "name": "Name" },
+        { "id": "cyr-cap", "name": "Cyrillic Capital" },
+        { "id": "cyr-low", "name": "Cyrillic Small" },
+        { "id": "sound", "name": "Sound" }
+    ],
+    "groups": [
+        {
+            "id": "cyrillic-letters",
+            "name": "Cyrillic letters",
+            "articles": [
+                {
+                    "id": "letter-a",
+                    "terms": [
+                        {"category": "name", "value": "A"},
+                        {"category": "cyr-cap", "value": "А"},
+                        {"category": "cyr-low", "value": "а"},
+                        {"category": "sound", "value": "/a/ - `cat`"}
+                    ]
+                },
+                {
+                    "id": "letter-be",
+                    "terms": [
+                        {"category": "name", "value": "Be"},
+                        {"category": "cyr-cap", "value": "Б"},
+                        {"category": "cyr-low", "value": "б"},
+                        {"category": "sound", "value": "/b/ - `ball`"}
+                    ]
+                },
+                {
+                    "id": "letter-ve",
+                    "terms": [
+                        {"category": "name", "value": "Ve"},
+                        {"category": "cyr-cap", "value": "В"},
+                        {"category": "cyr-low", "value": "в"},
+                        {"category": "sound", "value": "/v/ - `vase`"}
+                    ]
+                },
+                {
+                    "id": "letter-ge",
+                    "terms": [
+                        {"category": "name", "value": "Ge"},
+                        {"category": "cyr-cap", "value": "Г"},
+                        {"category": "cyr-low", "value": "г"},
+                        {"category": "sound", "value": "/g/ - `gift`"}
+                    ]
+                },
+                {
+                    "id": "letter-ghe-upturn",
+                    "terms": [
+                        {"category": "name", "value": "Ghe with upturn"},
+                        {"category": "cyr-cap", "value": "Ґ"},
+                        {"category": "cyr-low", "value": "ґ"},
+                        {"category": "sound", "value": "/g/ - `go`"}
+                    ]
+                },
+                {
+                    "id": "letter-de",
+                    "terms": [
+                        {"category": "name", "value": "De"},
+                        {"category": "cyr-cap", "value": "Д"},
+                        {"category": "cyr-low", "value": "д"},
+                        {"category": "sound", "value": "/d/ - `door`"}
+                    ]
+                },
+                {
+                    "id": "letter-dje",
+                    "terms": [
+                        {"category": "name", "value": "Dje"},
+                        {"category": "cyr-cap", "value": "Ђ"},
+                        {"category": "cyr-low", "value": "ђ"},
+                        {"category": "sound", "value": "/dj/ - `django`"}
+                    ]
+                },
+                {
+                    "id": "letter-gje",
+                    "terms": [
+                        {"category": "name", "value": "Gje"},
+                        {"category": "cyr-cap", "value": "Ѓ"},
+                        {"category": "cyr-low", "value": "ѓ"},
+                        {"category": "sound", "value": "/gy/ - `gear`"}
+                    ]
+                },
+                {
+                    "id": "letter-ye",
+                    "terms": [
+                        {"category": "name", "value": "Ye"},
+                        {"category": "cyr-cap", "value": "Е"},
+                        {"category": "cyr-low", "value": "е"},
+                        {"category": "sound", "value": "/e/ - `yes`"}
+                    ]
+                },
+                {
+                    "id": "letter-yo",
+                    "terms": [
+                        {"category": "name", "value": "Yo"},
+                        {"category": "cyr-cap", "value": "Ё"},
+                        {"category": "cyr-low", "value": "ё"},
+                        {"category": "sound", "value": "/jo/ - `york`"}
+                    ]
+                },
+                {
+                    "id": "letter-ukrainian-ye",
+                    "terms": [
+                        {"category": "name", "value": "Ukrainian Ye"},
+                        {"category": "cyr-cap", "value": "Є"},
+                        {"category": "cyr-low", "value": "є"},
+                        {"category": "sound", "value": "/je/ - `yes`"}
+                    ]
+                },
+                {
+                    "id": "letter-zhe",
+                    "terms": [
+                        {"category": "name", "value": "Zhe"},
+                        {"category": "cyr-cap", "value": "Ж"},
+                        {"category": "cyr-low", "value": "ж"},
+                        {"category": "sound", "value": "/sh/ - `trasure`"}
+                    ]
+                }
+            ]
+        }
+    ]
+}

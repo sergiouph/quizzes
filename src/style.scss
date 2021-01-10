@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    background-color: white;
+}
+
+.select-option-quiz {
+    .question {
+        font-size: 400%;
+    }
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    
+    .card {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+
+        margin: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: gainsboro;
+        cursor: default;
+        
+        .card-term {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            font-size: 200%;
+        }
+        
+        &.clickable {
+            cursor: pointer;
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+}
