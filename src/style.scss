@@ -8,6 +8,14 @@ body {
     .question {
         font-size: 400%;
     }
+    .actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        padding: 10px;
+    }
 }
 
 .card-container {

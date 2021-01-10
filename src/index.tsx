@@ -12,7 +12,7 @@ const source = buildSource(sourceData)
 
 const App = () => (
   <div className="app">
-    <SelectOptionQuiz quiz={source.quizzes[0]} />
+    <SelectOptionQuiz quiz={source.quizzes[0]} autoNext={true} />
   </div>
 );
 
