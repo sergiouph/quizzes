@@ -102,12 +102,18 @@ export function buildSource(sourceData: any): Source {
 
         for (const articleData of groupData['articles']) {
             const terms: Term[] = []
+            const orders: Map<string, number> = new Map
 
             for (const termData of articleData['terms']) {
+                const categoryId = str(termData['category'])
+                const order = orders.get(categoryId) || 1;
                 terms.push({
                     value: str(termData['value']),
-                    category: findCategory(str(termData['category']), categories),
+                    category: findCategory(categoryId, categories),
+                    order,
                 })
+
+                orders.set(categoryId, order + 1)
             }
 
             articles.push({
@@ -126,6 +132,7 @@ export function buildSource(sourceData: any): Source {
 
     for (const quizData of sourceData['quizzes']) {
         quizzes.push({
+            id: str(quizData['id']),
             name: str(quizData['name']),
             type: quizType(quizData['type']),
             groups: findGroups(quizData['groups'], groups),

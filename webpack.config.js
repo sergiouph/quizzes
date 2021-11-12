@@ -1,4 +1,5 @@
 const path = require('path');
+const docsPath = path.resolve(__dirname, "docs");
 
 module.exports = {
   mode: "development",
@@ -6,7 +7,7 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "docs"),
+    path: docsPath,
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
@@ -22,5 +23,9 @@ module.exports = {
         ]
       },
     ]
+  },
+  devServer: {
+    contentBase: docsPath,
+    hot: true,
   }
 };

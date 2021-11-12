@@ -1,4 +1,6 @@
-import { Article, Quiz, Source, Term, Group, Option } from "./types";
+import { Article, Quiz, Source, Term, Group, Option, Category } from "./types";
+
+const WORST_CASE = 100
 
 export interface OptionCase {
     isAnswer: boolean
@@ -10,7 +12,7 @@ export interface QuizCase {
     options: OptionCase[]
 }
 
-function selectArticles(groups: Group[]): Article[] {
+function collectArticles(groups: Group[]): Article[] {
     const result: Article[] = []
 
     for (const group of groups) {
@@ -18,19 +20,47 @@ function selectArticles(groups: Group[]): Article[] {
             result.push(article)
         }
     }
-
-    // TODO consider selected articles contain specific categories to avoid errors
     return result
 }
 
-function selectArticle(articles: Article[]): Article {    
-    const index = Math.floor(articles.length * Math.random())
-    return articles[index]
+function containsAnyCategory(terms: Term[], categories: Category[]): boolean {
+    for (const term of terms) {
+        for (const category of categories) {
+            if (term.category === category) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+function selectArticle(articles: Article[], categories: Category[], categories2: Category[]): Article {
+    for (let i = 0; i < WORST_CASE; i++) {
+        const index = Math.floor(articles.length * Math.random())
+        const article = articles[index]
+
+        if (containsAnyCategory(article.terms, categories)) {
+            if (categories2.length === 0) {
+                return article
+            }
+
+            if (containsAnyCategory(article.terms, categories2)) {
+                return article
+            }
+        }
+    }
+    
+    throw new Error(`No article found`)
 }
 
 function selectOption(options: Option[]): Option {    
     const index = Math.floor(options.length * Math.random())
     return options[index]
+}
+
+function selectTerm(terms: Term[]): Term {    
+    const index = Math.floor(terms.length * Math.random())
+    return terms[index]
 }
 
 function buildOptionCase(option: Option, article: Article, isAnswer: boolean): OptionCase {
@@ -40,16 +70,22 @@ function buildOptionCase(option: Option, article: Article, isAnswer: boolean): O
     }
 
     for (const category of option.categories) {
-        let missing = true
+        const categoryTerms: Term[] = []
         for (const term of article.terms) {
             if (term.category.id === category.id) {
-                optionCase.terms.push(term)
-                missing = false
+                categoryTerms.push(term)
             }
         }
-        if (missing) {
-            throw new Error(`Category not found ${category.id} in article ${article.id}`)
+        
+        if (categoryTerms.length > 0) {
+            const term = selectTerm(categoryTerms)
+
+            optionCase.terms.push(term)
         }
+    }
+
+    if (optionCase.terms.length === 0) {
+        throw new Error(`Missing terms`)
     }
 
     return optionCase
@@ -66,9 +102,37 @@ function shuffle(a: any[]) {
     return a;
 }
 
+function toString(terms: Term[]): string {
+    const items: string[] = []
+
+    for (const term of terms) {
+        items.push(term.value)
+    }
+
+    items.sort()
+
+    return items.join('\n')
+}
+
+function collectCategories(options: Option[]): Category[] {
+    const result: Category[] = []
+
+    for (const option of options) {
+        for (const category of option.categories) {
+            if (result.indexOf(category) === -1) {
+                result.push(category)
+            }
+        }
+    }
+    
+    return result
+}
+
 export function generateQuizCase(quiz: Quiz): QuizCase {
-    const articles = selectArticles(quiz.groups)
-    const articleMain = selectArticle(articles)
+    const qCategories = collectCategories(quiz.questions)
+    const aCategories = collectCategories(quiz.answers)
+    const articles = collectArticles(quiz.groups)
+    const articleMain = selectArticle(articles, qCategories, aCategories)
     const question = selectOption(quiz.questions)
     const questionCase = buildOptionCase(question, articleMain, false)
     const optionCases: OptionCase[] = [
@@ -76,16 +140,24 @@ export function generateQuizCase(quiz: Quiz): QuizCase {
     ];
 
     const visited = [articleMain]
+    const selected: string[] = []
 
     while (optionCases.length < quiz.options) {
-        const articleCase = selectArticle(articles)
+        const option = selectOption(quiz.answers)
+        const oCategories = collectCategories([option])
+        const articleCase = selectArticle(articles, oCategories, [])
 
         if (visited.indexOf(articleCase) === -1) {
-            optionCases.push(
-                buildOptionCase(selectOption(quiz.answers), articleCase, false)
-            )
+            const optionCase = buildOptionCase(option, articleCase, false)
+            const optionCaseStr = toString(optionCase.terms)
 
-            visited.push(articleCase)
+            if (selected.indexOf(optionCaseStr) == -1) {
+                selected.push(optionCaseStr)
+
+                optionCases.push(optionCase)
+
+                visited.push(articleCase)
+            }
         }
     }
 

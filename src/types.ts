@@ -5,6 +5,7 @@ export enum QuizType {
 export interface Term {
     category: Category;
     value: string;
+    order: number;
 }
 
 export interface Article {
@@ -30,6 +31,7 @@ export interface Option {
 }
 
 export interface Quiz {
+    id: string;
     name: string;
     description?: string;
     type: QuizType;

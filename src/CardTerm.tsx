@@ -8,9 +8,18 @@ export interface CardTermProperties {
 export const CardTerm = (props: CardTermProperties) => {
     return (
         <div className="card-term">
-            <span title={props.term.category.name}>
+            <div className="term-value">
                 {props.term.value}
-            </span>
+            </div>
+            <div className="term-info">
+                <div className="term-category">
+                    {props.term.category.name}
+                </div>
+                &nbsp;
+                <div className={`term-order order-${props.term.order}` }>
+                    {props.term.order}
+                </div>
+            </div>
         </div>
     )
 }

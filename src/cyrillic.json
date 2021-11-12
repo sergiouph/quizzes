@@ -1,19 +1,30 @@
 {
     "quizzes": [
         {
-            "name": "Cyrillic to Romanic",
+            "id": "letter-names",
+            "name": "Letter to Name",
             "type": "select-option",
             "groups": ["cyrillic-letters"],
             "questions": ["cyr-cap cyr-low"],
-            "answers": ["name sound"],
+            "answers": ["name"],
             "options": 5
         },
         {
-            "name": "Romanic to Cyrillic",
+            "id": "names-letter",
+            "name": "Name to Letter",
             "type": "select-option",
             "groups": ["cyrillic-letters"],
-            "questions": ["name sound"],
+            "questions": ["name"],
             "answers": ["cyr-cap cyr-low"],
+            "options": 5
+        },
+        {
+            "id": "letter-sound",
+            "name": "Letter Sounds",
+            "type": "select-option",
+            "groups": ["cyrillic-letters"],
+            "questions": ["cyr-cap cyr-low"],
+            "answers": ["sound"],
             "options": 5
         }
     ],
@@ -193,7 +204,8 @@
                 {
                     "id": "letter-short-i",
                     "terms": [
-                        {"category": "name", "value": "Short I or Yot"},
+                        {"category": "name", "value": "Short I"},
+                        {"category": "name", "value": "Yot"},
                         {"category": "cyr-cap", "value": "Й"},
                         {"category": "cyr-low", "value": "й"},
                         {"category": "sound", "value": "'y' in 'toy'"}
@@ -328,7 +340,8 @@
                 {
                     "id": "letter-kje",
                     "terms": [
-                        {"category": "name", "value": "Kje or Tje"},
+                        {"category": "name", "value": "Kje"},
+                        {"category": "name", "value": "Tje"},
                         {"category": "cyr-cap", "value": "Ќ"},
                         {"category": "cyr-low", "value": "ќ"},
                         {"category": "sound", "value": "kj"}
@@ -355,7 +368,8 @@
                 {
                     "id": "letter-ef",
                     "terms": [
-                        {"category": "name", "value": "Ef or Fe"},
+                        {"category": "name", "value": "Ef"},
+                        {"category": "name", "value": "Fe"},
                         {"category": "cyr-cap", "value": "Ф"},
                         {"category": "cyr-low", "value": "ф"},
                         {"category": "sound", "value": "'f' in 'face'"}
@@ -364,7 +378,8 @@
                 {
                     "id": "letter-kha",
                     "terms": [
-                        {"category": "name", "value": "Kha or Ha"},
+                        {"category": "name", "value": "Kha"},
+                        {"category": "name", "value": "Ha"},
                         {"category": "cyr-cap", "value": "Х"},
                         {"category": "cyr-low", "value": "х"},
                         {"category": "sound", "value": "'ch' in 'loch'"}
@@ -382,7 +397,8 @@
                 {
                     "id": "letter-che",
                     "terms": [
-                        {"category": "name", "value": "Che or Cha"},
+                        {"category": "name", "value": "Che"},
+                        {"category": "name", "value": "Cha"},
                         {"category": "cyr-cap", "value": "Ч"},
                         {"category": "cyr-low", "value": "ч"},
                         {"category": "sound", "value": "'ch' in 'chat'"}
@@ -391,7 +407,8 @@
                 {
                     "id": "letter-dzhe",
                     "terms": [
-                        {"category": "name", "value": "Dzhe or Gea"},
+                        {"category": "name", "value": "Dzhe"},
+                        {"category": "name", "value": "Gea"},
                         {"category": "cyr-cap", "value": "Џ"},
                         {"category": "cyr-low", "value": "џ"},
                         {"category": "sound", "value": "'j' in 'jump'"}
@@ -418,16 +435,20 @@
                 {
                     "id": "letter-hard-sign-yer",
                     "terms": [
-                        {"category": "name", "value": "Hard sign (Yer)"},
+                        {"category": "name", "value": "Hard sign"},
+                        {"category": "name", "value": "Back yer"},
+                        {"category": "name", "value": "Back jer"},
                         {"category": "cyr-cap", "value": "Ъ"},
-                        {"category": "cyr-low", "value": "ъ"},
-                        {"category": "sound", "value": "--"}
+                        {"category": "cyr-low", "value": "ъ"}
                     ]
                 },
                 {
                     "id": "letter-yery",
                     "terms": [
-                        {"category": "name", "value": "Yery, Yeru, Ery or Eru"},
+                        {"category": "name", "value": "Yery"},
+                        {"category": "name", "value": "Yeru"},
+                        {"category": "name", "value": "Ery"},
+                        {"category": "name", "value": "Eru"},
                         {"category": "cyr-cap", "value": "Ы"},
                         {"category": "cyr-low", "value": "ы"},
                         {"category": "sound", "value": "/ɨ/"}
@@ -436,10 +457,11 @@
                 {
                     "id": "letter-soft-sign-yeri",
                     "terms": [
-                        {"category": "name", "value": "Soft sign (Yeri)"},
+                        {"category": "name", "value": "Soft sign"},
+                        {"category": "name", "value": "Front yer"},
+                        {"category": "name", "value": "Front jer"},
                         {"category": "cyr-cap", "value": "Ь"},
-                        {"category": "cyr-low", "value": "ь"},
-                        {"category": "sound", "value": "--"}
+                        {"category": "cyr-low", "value": "ь"}
                     ]
                 },
                 {
@@ -454,7 +476,8 @@
                 {
                     "id": "letter-yu",
                     "terms": [
-                        {"category": "name", "value": "Yu or Ju"},
+                        {"category": "name", "value": "Yu"},
+                        {"category": "name", "value": "Ju"},
                         {"category": "cyr-cap", "value": "Ю"},
                         {"category": "cyr-low", "value": "ю"},
                         {"category": "sound", "value": "'you' or 'use'"}
@@ -463,7 +486,8 @@
                 {
                     "id": "letter-ya",
                     "terms": [
-                        {"category": "name", "value": "Ya or Ja"},
+                        {"category": "name", "value": "Ya"},
+                        {"category": "name", "value": "Ja"},
                         {"category": "cyr-cap", "value": "Я"},
                         {"category": "cyr-low", "value": "я"},
                         {"category": "sound", "value": "'ya' in 'yard'"}

@@ -1,75 +1,157 @@
-body {
+
+@mixin theme($bg, $fg, $success-color, $failure-color) {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: black;
-    background-color: white;
-}
+    color: $fg;
+    background-color: $bg;
 
-.select-option-quiz {
-    .question {
-        font-size: 400%;
-    }
-    .actions {
-        &, button{
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: larger;
+    .select-option-quiz {
+        .question {
+            font-size: 400%;
         }
+        .actions {
+            &, button{
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: larger;
+            }
 
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 50px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 50px;
+        }
     }
-}
 
-.card-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    
-    .card {
+    .card-container {
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: stretch;
-
-        margin: 10px;
-        border: 1px solid black;
-        border-radius: 5px;
-        background-color: gainsboro;
-        cursor: default;
         
-        .card-term {
-            margin: 5px;
-            padding: 10px;
+        .card {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: stretch;
+
+            margin: 10px;
             border-radius: 5px;
-            background-color: white;
-            font-size: 200%;
-        }
-        
-        &.clickable {
-            cursor: pointer;
-            &:hover {
-                background-color: white;
-            }
-        }
+            background-color: transparentize($fg, 0.50);
+            cursor: default;
+            
+            .card-term {
+                margin: 5px;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: $bg;
+                
+                .term-value {
+                    font-size: 200%;
+                    padding: 10px 0 5px 0;
+                    text-align: center;
+                }
 
-        &.success {
-            background-color: green;
-            &:hover {
-                background-color: green;
-            }
-        }
+                .term-info {
+                    font-size: 10px;
+                    color: transparentize($fg, 0.50);
+                    // display: flex;
+                    display: none;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+                    align-items: stretch;
 
-        &.failure {
-            background-color: red;
-            &:hover {
-                background-color: red;
+                    .term-order::before {
+                        content: "#";
+                    }
+                    .term-order.order-1 {
+                        display: none;
+                    }
+                }
+            }
+            
+            &.clickable {
+                cursor: pointer;
+                &:hover {
+                    background-color: transparentize($fg, 0.20);
+                }
+            }
+
+            &.success {
+                background-color: $success-color;
+                &:hover {
+                    background-color: $success-color;
+                }
+            }
+
+            &.failure {
+                background-color: $failure-color;
+                &:hover {
+                    background-color: $failure-color;
+                }
             }
         }
     }
+
+    .library {
+        .groups {
+            .group {
+                .group-id {}
+                .group-name {}
+                .group-description {}
+            }
+        }
+        .articles {
+            display: flex;
+            flex-wrap: wrap;
+            .article {
+                border: 1px solid $fg;
+                border-radius: 5px;
+                margin: 5px;
+                padding: 5px;
+                .article-id { display: none; }
+                .terms {
+                    .category {
+                        .category-name {
+                            font-weight: bold;
+                        }
+                        .category-terms {
+                            display: flex;
+                            flex-direction: column;
+                            .term {
+                                display: flex;
+                                .term-order{
+                                    margin: 5px;
+                                }
+                                .term-value{
+                                    margin: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }    
+
+    a {
+        color: $fg;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+body.dark-mode {
+    @include theme(
+        $bg: #000000, 
+        $fg: #FFFFFF, 
+        $success-color: #00FF00, 
+        $failure-color: #FF0000,
+    )
 }
